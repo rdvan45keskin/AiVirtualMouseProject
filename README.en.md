@@ -26,7 +26,7 @@ The following Python libraries are required for this project:
 
 1. Clone or download this repository to your computer:
    ```bash
-   git clone [https://github.com/rdvan45keskin/AiVirtualMouseProject.git](https://github.com/rdvan45keskin/AiVirtualMouseProject.git)
+   git clone https://github.com/rdvan45keskin/AiVirtualMouseProject.git
     ```
 2. Navigate to the project directory and install the required libraries:
   ```bash
