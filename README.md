@@ -28,9 +28,9 @@ Projenin çalışması için aşağıdaki Python kütüphaneleri gereklidir:
 ## 🚀 Kurulum
 
 1. Bu projeyi bilgisayarınıza klonlayın veya indirin:
-   ```bash
-   git clone [https://github.com/rdvan45keskin/AiVirtualMouseProject.git]
-    ```
+  ```bash
+  git clone [https://github.com/rdvan45keskin/AiVirtualMouseProject.git](https://github.com/rdvan45keskin/AiVirtualMouseProject.git)
+  ```
 2. Proje dizinine gidin ve gerekli kütüphaneleri yükleyin:
   ```bash
   pip install opencv-python mediapipe pyautogui numpy pycaw comtypes
