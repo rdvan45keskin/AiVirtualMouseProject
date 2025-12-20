@@ -1,14 +1,7 @@
-"""
-Hand Tracking Module
-Updated for mediapipe >= 0.10.x
-Original Author: Murtaza Hassan
-"""
-
 import cv2
 import mediapipe as mp
 import time
 import math
-
 
 class handDetector:
     def __init__(self, mode=False, maxHands=2, detectionCon=0.5, trackCon=0.5):
@@ -44,10 +37,17 @@ class handDetector:
         xList, yList = [], []
         bbox = []
         self.lmList = []
+        handType = "None"
 
         if self.results and self.results.multi_hand_landmarks:
             if handNo < len(self.results.multi_hand_landmarks):
                 myHand = self.results.multi_hand_landmarks[handNo]
+                
+                if self.results.multi_handedness:
+                    if handNo < len(self.results.multi_handedness):
+                        handType = self.results.multi_handedness[handNo].classification[0].label
+                # ----------------------------------------------------
+
                 h, w, c = img.shape
                 for id, lm in enumerate(myHand.landmark):
                     cx, cy = int(lm.x * w), int(lm.y * h)
@@ -57,28 +57,36 @@ class handDetector:
                     if draw:
                         cv2.circle(img, (cx, cy), 5, (255, 0, 255), cv2.FILLED)
 
-                xmin, xmax = min(xList), max(xList)
-                ymin, ymax = min(yList), max(yList)
-                bbox = xmin, ymin, xmax, ymax
+                if xList and yList:
+                    xmin, xmax = min(xList), max(xList)
+                    ymin, ymax = min(yList), max(yList)
+                    bbox = xmin, ymin, xmax, ymax
 
-                if draw:
-                    cv2.rectangle(img, (xmin - 20, ymin - 20),
-                                  (xmax + 20, ymax + 20), (0, 255, 0), 2)
+                    if draw:
+                        cv2.rectangle(img, (xmin - 20, ymin - 20),
+                                      (xmax + 20, ymax + 20), (0, 255, 0), 2)
 
-        return self.lmList, bbox
+                        cv2.putText(img, handType, (xmin - 30, ymin - 30), 
+                                    cv2.FONT_HERSHEY_PLAIN, 2, (255, 0, 0), 2)
 
-    def fingersUp(self):
+        return self.lmList, bbox, handType
+
+    def fingersUp(self, handType="Right"):
         fingers = []
         if len(self.lmList) == 0:
             return []
+        
+        if handType == "Right":
+            if self.lmList[self.tipIds[0]][1] > self.lmList[self.tipIds[0] - 1][1]:
+                fingers.append(1)
+            else:
+                fingers.append(0)
+        else: # Left
+            if self.lmList[self.tipIds[0]][1] < self.lmList[self.tipIds[0] - 1][1]:
+                fingers.append(1)
+            else:
+                fingers.append(0)
 
-        # Baş parmak (sağ el varsayımı)
-        if self.lmList[self.tipIds[0]][1] > self.lmList[self.tipIds[0] - 1][1]:
-            fingers.append(1)
-        else:
-            fingers.append(0)
-
-        # Diğer parmaklar
         for id in range(1, 5):
             if self.lmList[self.tipIds[id]][2] < self.lmList[self.tipIds[id] - 2][2]:
                 fingers.append(1)
@@ -87,9 +95,6 @@ class handDetector:
         return fingers
 
     def findDistance(self, p1, p2, img, draw=True, r=15, t=3):
-        if len(self.lmList) <= max(p1, p2):
-            return 0, img, [0, 0, 0, 0, 0, 0]
-
         x1, y1 = self.lmList[p1][1:]
         x2, y2 = self.lmList[p2][1:]
         cx, cy = (x1 + x2) // 2, (y1 + y2) // 2
@@ -102,34 +107,3 @@ class handDetector:
 
         length = math.hypot(x2 - x1, y2 - y1)
         return length, img, [x1, y1, x2, y2, cx, cy]
-
-
-def main():
-    pTime = 0
-    cap = cv2.VideoCapture(0)
-    detector = handDetector()
-
-    while True:
-        success, img = cap.read()
-        if not success:
-            break
-
-        img = detector.findHands(img)
-        lmList, bbox = detector.findPosition(img)
-        if lmList:
-            print(lmList[4])  # baş parmak ucu
-
-        cTime = time.time()
-        fps = 1 / (cTime - pTime)
-        pTime = cTime
-
-        cv2.putText(img, f'FPS: {int(fps)}', (10, 70),
-                    cv2.FONT_HERSHEY_PLAIN, 2, (255, 0, 255), 2)
-        cv2.imshow("Hand Tracking", img)
-
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
-
-
-if __name__ == "__main__":
-    main()
