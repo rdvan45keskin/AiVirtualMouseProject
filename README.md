@@ -1,17 +1,18 @@
-# AI Virtual Mouse - El Hareketleriyle Fare Kontrolü 🖱️✋
+# AI Virtual Mouse - El Hareketleriyle Fare ve Ses Kontrolü 🖱️🔊✋
 
-Bu proje, bilgisayarınızın kamerasını kullanarak el hareketlerinizle fare imlecini kontrol etmenizi sağlayan bir Python uygulamasıdır. **OpenCV** ve **MediaPipe** kütüphanelerini kullanarak eli ve parmakları algılar, **PyAutoGUI** ile bu hareketleri fare komutlarına dönüştürür.
+Bu proje, bilgisayarınızın kamerasını kullanarak el hareketlerinizle **fare imlecini** ve **bilgisayarın ses seviyesini** kontrol etmenizi sağlayan bir Python uygulamasıdır. **OpenCV** ve **MediaPipe** kütüphanelerini kullanarak sağ ve sol eli ayırt eder; sağ el ile fareyi, sol el ile ses seviyesini yönetmenize olanak tanır.
 
 ## 🌍 Language / Dil
 [🇹🇷 Türkçe Oku](README.md) | [🇺🇸 Read in English](README.en.md)
 
 ## 🌟 Özellikler
 
-- **Temassız Kontrol:** Herhangi bir ekstra donanım olmadan sadece web kamerası ile çalışır.
-- **İmleç Hareketi:** İşaret parmağınızı kullanarak imleci ekranda hareket ettirebilirsiniz.
-- **Tıklama (Click):** İşaret ve orta parmağınızı birbirine yaklaştırarak tıklama işlemi yapabilirsiniz.
-- **Hareket Yumuşatma (Smoothening):** Titremeyi önleyerek daha stabil bir fare deneyimi sunar.
-- **Çerçeve Daraltma:** Elinizi çok fazla hareket ettirmeden tüm ekrana ulaşabilmeniz için aktif alan sınırlandırılmıştır.
+- **Çift El Desteği:** Sağ ve sol eli ayrı ayrı algılayıp farklı görevler atar.
+- **Fare Kontrolü (Sağ El):**
+  - **İmleç Hareketi:** İşaret parmağınızı kullanarak imleci hareket ettirebilirsiniz.
+  - **Tıklama (Click):** İşaret ve orta parmağınızı birbirine yaklaştırarak tıklama yapabilirsiniz.
+- **Ses Kontrolü (Sol El):** Sol elinizin baş ve işaret parmağı arasındaki mesafeyi kullanarak bilgisayarın sesini açıp kısabilirsiniz.
+- **Hareket Yumuşatma (Smoothening):** Titremeyi önleyerek daha stabil bir deneyim sunar.
 
 ## 🛠️ Kullanılan Kütüphaneler
 
@@ -20,42 +21,46 @@ Projenin çalışması için aşağıdaki Python kütüphaneleri gereklidir:
 - `opencv-python`: Görüntü işleme için.
 - `mediapipe`: El takibi ve landmark tespiti için.
 - `pyautogui`: Fare ve klavye kontrolü için.
-- `numpy`: Matematiksel işlemler ve koordinat dönüşümleri için.
+- `pycaw`: Windows ses sistemi kontrolü için.
+- `comtypes`: Pycaw kütüphanesinin çalışması için gerekli.
+- `numpy`: Matematiksel işlemler için.
 
 ## 🚀 Kurulum
 
 1. Bu projeyi bilgisayarınıza klonlayın veya indirin:
    ```bash
-   git clone https://github.com/rdvan45keskin/AiVirtualMouseProject.git
+   git clone [https://github.com/rdvan45keskin/AiVirtualMouseProject.git]
     ```
 2. Proje dizinine gidin ve gerekli kütüphaneleri yükleyin:
   ```bash
-  pip install opencv-python mediapipe pyautogui numpy
+  pip install opencv-python mediapipe pyautogui numpy pycaw comtypes
   ```
 
 ## 🎮 Nasıl Kullanılır?
 
-1. AiVirtualMouseProject.py dosyasını çalıştırın:
-   ```bash
-   python AiVirtualMouseProject.py
-    ```
-2. Kamera açıldığında elinizi kameraya gösterin. Sistem iki modda çalışır:
+Kamera açıldığında ellerinizi kameraya gösterin. Sistem şu şekilde çalışır:
 
-   * **Hareket Modu:** Sadece **işaret parmağınız** yukarıdaysa, fare imleci parmağınızı takip eder.
-   * **Tıklama Modu:** **İşaret ve orta parmağınız** aynı anda yukarıdaysa, "Tıklama Modu"na geçer. İki parmağınızı birbirine yaklaştırdığınızda (mesafe kısaldığında) fare tıklaması (click) gerçekleşir.
+### 👉 Sağ El: Fare Modu
+* **Hareket:** Sadece **işaret parmağınız** yukarıdaysa, fare imleci parmağınızı takip eder.
+* **Tıklama:** **İşaret ve orta parmağınız** aynı anda yukarıdaysa "Tıklama Modu"na geçer. İki parmağınızı birbirine yaklaştırdığınızda (tık yaptığınızda) fare tıklaması gerçekleşir.
 
-3. Programdan çıkmak için `q` tuşuna basabilirsiniz.
+### 👈 Sol El: Ses Modu
+* **Ses Ayarı:** Sol elinizin **baş ve işaret parmağını** kullanarak sesi kontrol edersiniz.
+* Parmakları açtığınızda ses artar, kapattığınızda ses azalır.
+* **Ses Sabitleme:** Serçe parmağınızı kapattığınızda ses seviyesi o anki ayara sabitlenir.
+
+Programdan çıkmak için `q` tuşuna basabilirsiniz.
 
 ## ⚙️ Ayarlar
 
-`AiVirtualMouseProject.py` dosyası içerisindeki şu değişkenleri değiştirerek hassasiyeti kendinize göre ayarlayabilirsiniz:
+`AiVirtualMouseProject.py` dosyası içerisindeki şu değişkenleri değiştirerek hassasiyeti ayarlayabilirsiniz:
 
-* **`frameR`**: Çerçeve daraltma miktarıdır. Bu değeri artırırsanız, elinizi daha az hareket ettirerek ekranın köşelerine ulaşabilirsiniz.
-* **`smoothening`**: İmleç hareketinin yumuşaklığını belirler. Değer arttıkça imleç daha pürüzsüz ama biraz daha gecikmeli gelir.
+* **`frameR`**: Çerçeve daraltma miktarı (Elinizi çok hareket ettirmeden tüm ekrana ulaşmak için).
+* **`smoothening`**: İmleç hareketinin yumuşaklık seviyesi.
 
 ## 📂 Dosya Yapısı
 
 * `AiVirtualMouseProject.py`: Ana uygulama dosyası.
-* `HandTrackingModule.py`: El ve parmak takibi işlemlerini yapan yardımcı modül.
+* `HandTrackingModule.py`: El, parmak takibi ve sağ/sol el ayrımı yapan yardımcı modül.
 
 
