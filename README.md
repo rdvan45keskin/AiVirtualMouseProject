@@ -33,7 +33,7 @@ Projenin çalışması için aşağıdaki Python kütüphaneleri gereklidir:
   ```
 2. Proje dizinine gidin ve gerekli kütüphaneleri yükleyin:
   ```bash
-  pip install opencv-python mediapipe pyautogui numpy pycaw comtypes
+  pip install -r requirements.txt
   ```
 
 ## 🎮 Nasıl Kullanılır?
