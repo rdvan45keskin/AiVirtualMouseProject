@@ -1,4 +1,4 @@
-# AI Virtual Mouse - El Hareketleriyle Fare ve Ses Kontrolü 🖱️🔊✋
+# GestureMote - El Hareketleriyle Fare ve Ses Kontrolü 🖱️🔊✋
 
 Bu proje, bilgisayarınızın kamerasını kullanarak el hareketlerinizle **fare imlecini** ve **bilgisayarın ses seviyesini** kontrol etmenizi sağlayan bir Python uygulamasıdır. **OpenCV** ve **MediaPipe** kütüphanelerini kullanarak sağ ve sol eli ayırt eder; sağ el ile fareyi, sol el ile ses seviyesini yönetmenize olanak tanır.
 
