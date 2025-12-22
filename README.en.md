@@ -28,9 +28,9 @@ The following Python libraries are required for this project to run:
 ## 🚀 Installation
 
 1. Clone or download this repository to your computer:
-   ```bash
-   git clone [https://github.com/rdvan45keskin/AiVirtualMouseProject.git]
-    ```
+  ```bash
+  git clone https://github.com/rdvan45keskin/AiVirtualMouseProject.git
+  ```
 2. Navigate to the project directory and install the required libraries:
   ```bash
   pip install opencv-python mediapipe pyautogui numpy pycaw comtypes
