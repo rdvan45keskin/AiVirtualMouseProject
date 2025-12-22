@@ -33,7 +33,7 @@ The following Python libraries are required for this project to run:
   ```
 2. Navigate to the project directory and install the required libraries:
   ```bash
-  pip install opencv-python mediapipe pyautogui numpy pycaw comtypes
+  pip install -r requirements.txt
   ```
 
 ## 🎮 How to Use?
