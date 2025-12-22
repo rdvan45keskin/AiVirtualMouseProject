@@ -1,4 +1,4 @@
-# AI Virtual Mouse - El Hareketleriyle Fare ve Ses Kontrolü 🖱️🔊✋
+# CamControl - El Hareketleriyle Fare ve Ses Kontrolü 🖱️🔊✋
 
 Bu proje, bilgisayarınızın kamerasını kullanarak el hareketlerinizle **fare imlecini** ve **bilgisayarın ses seviyesini** kontrol etmenizi sağlayan bir Python uygulamasıdır. **OpenCV** ve **MediaPipe** kütüphanelerini kullanarak sağ ve sol eli ayırt eder; sağ el ile fareyi, sol el ile ses seviyesini yönetmenize olanak tanır.
 
@@ -28,18 +28,12 @@ Projenin çalışması için aşağıdaki Python kütüphaneleri gereklidir:
 ## 🚀 Kurulum
 
 1. Bu projeyi bilgisayarınıza klonlayın veya indirin:
-<<<<<<< Updated upstream
   ```bash
-  git clone [https://github.com/rdvan45keskin/AiVirtualMouseProject.git](https://github.com/rdvan45keskin/AiVirtualMouseProject.git)
+  git clone https://github.com/rdvan45keskin/CamControl.git
   ```
-=======
-   ```bash
-   git clone [https://github.com/rdvan45keskin/AiVirtualMouseProject.git]
-    ```
->>>>>>> Stashed changes
 2. Proje dizinine gidin ve gerekli kütüphaneleri yükleyin:
   ```bash
-  pip install opencv-python mediapipe pyautogui numpy pycaw comtypes
+  pip install -r requirements.txt
   ```
 
 ## 🎮 Nasıl Kullanılır?
@@ -59,14 +53,14 @@ Programdan çıkmak için `q` tuşuna basabilirsiniz.
 
 ## ⚙️ Ayarlar
 
-`AiVirtualMouseProject.py` dosyası içerisindeki şu değişkenleri değiştirerek hassasiyeti ayarlayabilirsiniz:
+`CamControl.py` dosyası içerisindeki şu değişkenleri değiştirerek hassasiyeti ayarlayabilirsiniz:
 
 * **`frameR`**: Çerçeve daraltma miktarı (Elinizi çok hareket ettirmeden tüm ekrana ulaşmak için).
 * **`smoothening`**: İmleç hareketinin yumuşaklık seviyesi.
 
 ## 📂 Dosya Yapısı
 
-* `AiVirtualMouseProject.py`: Ana uygulama dosyası.
+* `CamControl.py`: Ana uygulama dosyası.
 * `HandTrackingModule.py`: El, parmak takibi ve sağ/sol el ayrımı yapan yardımcı modül.
 
 

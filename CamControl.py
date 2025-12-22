@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-import HandTrackingModuleV2 as htm
+import HandTrackingModule as htm
 import time
 import pyautogui
 from ctypes import cast, POINTER
