@@ -1,4 +1,4 @@
-# AI Virtual Mouse - Hand Gesture Mouse & Volume Control 🖱️🔊✋
+# CamControl - Hand Gesture Mouse & Volume Control 🖱️🔊✋
 
 This project is a Python application that allows you to control the **mouse cursor** and **computer volume** using hand gestures via your computer's webcam. It uses **OpenCV** and **MediaPipe** libraries to distinguish between right and left hands, allowing you to manage the mouse with your right hand and volume levels with your left hand.
 
@@ -29,7 +29,7 @@ The following Python libraries are required for this project to run:
 
 1. Clone or download this repository to your computer:
   ```bash
-  git clone https://github.com/rdvan45keskin/AiVirtualMouseProject.git
+  git clone https://github.com/rdvan45keskin/CamControl.git
   ```
 2. Navigate to the project directory and install the required libraries:
   ```bash
@@ -53,13 +53,13 @@ You can press the `q` key to exit the program.
 
 ## ⚙️ Settings
 
-You can adjust the sensitivity by changing the following variables inside the `AiVirtualMouseProject.py` file:
+You can adjust the sensitivity by changing the following variables inside the `CamControl.py` file:
 
 * **`frameR`**: Frame Reduction amount (To reach the entire screen without moving your hand too much).
 * **`smoothening`**: Smoothening level of the cursor movement.
 
 ## 📂 File Structure
 
-* `AiVirtualMouseProject.py`: The main application file.
+* `CamControl.py`: The main application file.
 * `HandTrackingModule.py`: Helper module for hand/finger tracking and distinguishing between right/left hands.
 
