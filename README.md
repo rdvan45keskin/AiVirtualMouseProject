@@ -1,4 +1,4 @@
-# GestureMote - El Hareketleriyle Fare ve Ses Kontrolü 🖱️🔊✋
+# CamControl - El Hareketleriyle Fare ve Ses Kontrolü 🖱️🔊✋
 
 Bu proje, bilgisayarınızın kamerasını kullanarak el hareketlerinizle **fare imlecini** ve **bilgisayarın ses seviyesini** kontrol etmenizi sağlayan bir Python uygulamasıdır. **OpenCV** ve **MediaPipe** kütüphanelerini kullanarak sağ ve sol eli ayırt eder; sağ el ile fareyi, sol el ile ses seviyesini yönetmenize olanak tanır.
 
@@ -29,7 +29,7 @@ Projenin çalışması için aşağıdaki Python kütüphaneleri gereklidir:
 
 1. Bu projeyi bilgisayarınıza klonlayın veya indirin:
   ```bash
-  git clone https://github.com/rdvan45keskin/GestureMote.git
+  git clone https://github.com/rdvan45keskin/CamControl.git
   ```
 2. Proje dizinine gidin ve gerekli kütüphaneleri yükleyin:
   ```bash
@@ -53,14 +53,14 @@ Programdan çıkmak için `q` tuşuna basabilirsiniz.
 
 ## ⚙️ Ayarlar
 
-`AiVirtualMouseProject.py` dosyası içerisindeki şu değişkenleri değiştirerek hassasiyeti ayarlayabilirsiniz:
+`CamControl.py` dosyası içerisindeki şu değişkenleri değiştirerek hassasiyeti ayarlayabilirsiniz:
 
 * **`frameR`**: Çerçeve daraltma miktarı (Elinizi çok hareket ettirmeden tüm ekrana ulaşmak için).
 * **`smoothening`**: İmleç hareketinin yumuşaklık seviyesi.
 
 ## 📂 Dosya Yapısı
 
-* `AiVirtualMouseProject.py`: Ana uygulama dosyası.
+* `CamControl.py`: Ana uygulama dosyası.
 * `HandTrackingModule.py`: El, parmak takibi ve sağ/sol el ayrımı yapan yardımcı modül.
 
 
